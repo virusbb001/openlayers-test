@@ -20,8 +20,11 @@ gulp.task("server",function(){
  });
 });
 
+gulp.task("js-watch",["babel"],browserSync.reload);
+
 gulp.task("watch",["server"],function(){
  gulp.watch("./index.*",browserSync.reload);
+ gulp.watch("src/**/*.js",["js-watch"]);
 });
 
 gulp.task("default",["watch"]);
