@@ -1,3 +1,5 @@
+import getOpts from "form_settings";
+
 document.addEventListener("DOMContentLoaded",function(){
   var map=new ol.Map({
     target: "map",
@@ -11,4 +13,5 @@ document.addEventListener("DOMContentLoaded",function(){
       zoom: 4
     })
   });
+  var options=getOpts(ol,map);
 });
