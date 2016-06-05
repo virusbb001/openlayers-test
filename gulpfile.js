@@ -22,7 +22,9 @@ gulp.task("babel",function(){
     .pipe(plumber())
     .pipe(babel())
     .pipe(concat("index.js"))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write({
+      charset: "utf8"
+    }))
     .pipe(gulp.dest("js"));
 });
 
