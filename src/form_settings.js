@@ -7,7 +7,7 @@ function getOptions(ol,map){
   var options = {
     "add_single_ballon": {
       head: "Add Single Balloon",
-      inputs: ["latitude","longitude"],
+      type: "LatLong",
       execute: function(datas){
         var latitude=datas.latitude;
         var longitude=datas.longitude;
@@ -16,6 +16,7 @@ function getOptions(ol,map){
       }
     }
   };
+  map;
 
   return options;
 }
