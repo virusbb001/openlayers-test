@@ -1,4 +1,5 @@
 import getOpts from "form_settings";
+import render from "dom_components";
 
 document.addEventListener("DOMContentLoaded",function(){
   var map=new ol.Map({
@@ -14,4 +15,5 @@ document.addEventListener("DOMContentLoaded",function(){
     })
   });
   var options=getOpts(ol,map);
+  render(document.getElementById("forms"),options);
 });
