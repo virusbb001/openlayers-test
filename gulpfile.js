@@ -36,11 +36,9 @@ gulp.task("server",function(){
   });
 });
 
-gulp.task("js-watch",["eslint","babel"],browserSync.reload);
-
 gulp.task("watch",["server"],function(){
-  gulp.watch("./index.*",browserSync.reload);
-  gulp.watch("src/**/*.js",["js-watch"]);
+  gulp.watch(["./index.*","js/**/*"],browserSync.reload);
+  gulp.watch("src/**/*.js",["eslint","babel"]);
 });
 
-gulp.task("default",["watch","js-watch"]);
+gulp.task("default",["watch","eslint","babel"]);
