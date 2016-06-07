@@ -1,3 +1,4 @@
+/*  eslint no-console: "off" */
 import getOpts from "form_settings";
 import render from "dom_components";
 
@@ -19,6 +20,10 @@ document.addEventListener("DOMContentLoaded",function(){
   var vectorSource = new ol.source.Vector({
     features: [meganeMuseum]
   });
+  var view = new ol.View({
+    center: ol.proj.fromLonLat([136.223333,36.062083]),
+    zoom: 14
+  });
 
   var map=new ol.Map({
     target: "map",
@@ -26,11 +31,17 @@ document.addEventListener("DOMContentLoaded",function(){
       new ol.layer.Tile({ source: new ol.source.OSM() }),
       new ol.layer.Vector({ source: vectorSource })
     ],
-    view: new ol.View({
-      center: ol.proj.fromLonLat([136.223333,36.062083]),
-      zoom: 14
-    })
+    view: view
   });
   var options=getOpts(ol,map);
   render(document.getElementById("forms"),options);
+
+  navigator.geolocation.getCurrentPosition( (position) => {
+    view.setCenter(
+        ol.proj.fromLonLat([
+          position.coords.longitude,
+          position.coords.latitude]));
+  }, error => {
+    console.log(error);
+  });
 });
