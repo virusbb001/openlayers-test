@@ -1,6 +1,6 @@
 /*  eslint no-console: "off" */
 import getOpts from "form_settings";
-import render from "dom_components";
+import render from "dom_settings";
 
 document.addEventListener("DOMContentLoaded",function(){
   var meganeMuseum= new ol.Feature({
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded",function(){
     features: [meganeMuseum]
   });
   var view = new ol.View({
-    center: ol.proj.fromLonLat([136.223333,36.062083]),
+    center: ol.proj.fromLonLat([139.7528,35.685175]),
     zoom: 14
   });
 
@@ -38,10 +38,12 @@ document.addEventListener("DOMContentLoaded",function(){
 
   navigator.geolocation.getCurrentPosition( (position) => {
     view.setCenter(
-        ol.proj.fromLonLat([
-          position.coords.longitude,
-          position.coords.latitude]));
+      ol.proj.fromLonLat([
+        position.coords.longitude,
+        position.coords.latitude]));
   }, error => {
     console.log(error);
   });
+
+  window.map=map;
 });
