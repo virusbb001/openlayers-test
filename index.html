@@ -7,14 +7,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="index.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.16.0/ol.js"></script>
-  <script src="https://fb.me/react-15.1.0.min.js"></script>
-  <script src="https://fb.me/react-dom-15.1.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://jp.vuejs.org/js/vue.js"></script>
   <script src="./js/index.js"></script>
  </head>
  <body>
   <div id="map" class="map"></div>
-  <div id="forms"></div>
+  <div id="forms">
+   <div class="positionInput">
+    緯度:<input v-model="latitude" number>
+    経度:<input v-model="longitude" number>
+    <button>Action</button>
+   </div>
+  </div>
  </body>
 </html>
