@@ -1,8 +1,7 @@
 module.exports = {
  "globals": {
   "ol": true,
-  "React": true,
-  "ReactDOM": true
+  "Vue": true
  },
  "env": {
   "browser": true,
