@@ -1,13 +1,21 @@
-function vue_setting(map){
+function vue_setting(map,options){
   var latlngInputs=new Vue({
     el: "#forms",
     data: {
       position: {
         latitude: 0,
         longitude: 0
-      }
+      },
+      methods: options.LatLongController
     },
     methods: {
+      isCustom: (target) => {
+        console.log(target);
+        console.log("func" in target);
+        return ("func" in target)
+      }
+    }
+    /*{
       setFromNowPlace: function(event){
         event.target.disabled=true;
         event.target.textContent="Loading...";
@@ -27,7 +35,7 @@ function vue_setting(map){
           ol.proj.fromLonLat([pos.longitude, pos.latitude])
         );
       }
-    }
+    } */
   });
 
   window.latlngInputs=latlngInputs;
