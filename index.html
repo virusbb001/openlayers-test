@@ -18,7 +18,10 @@
    <div class="positionInput">
     緯度:<input v-model="position.latitude" number>
     経度:<input v-model="position.longitude" number>
-    <button @click="setFromNowPlace" :disabled="checkGeolocation()">Set now Position</button>
+    <div class="controllers" v-for="(name,method) in methods">
+     <button v-if="isCustom(method)" @click="method.func">{{name}}</button>
+     <button v-else @click="method">{{name}}</button>
+    </div>
    </div>
   </div>
  </body>
