@@ -1,4 +1,4 @@
-function create_components(){
+function vue_setting(map){
   var latlngInputs=new Vue({
     el: "#forms",
     data: {
@@ -10,16 +10,22 @@ function create_components(){
     methods: {
       setFromNowPlace: function(event){
         event.target.disabled=true;
-        event.target.textContent="Loading..."
+        event.target.textContent="Loading...";
         navigator.geolocation.getCurrentPosition((position)=>{
           this.$data.position.latitude=position.coords.latitude;
           this.$data.position.longitude=position.coords.longitude;
-          event.target.textContent="Set now Position"
+          event.target.textContent="Set now Position";
           event.target.disabled=false;
         });
       },
       checkGeolocation: function(){
         return !("geolocation" in navigator);
+      },
+      goTo: function(){
+        var pos=this.$data.position;
+        map.getView().setCenter(
+          ol.proj.fromLonLat([pos.longitude, pos.latitude])
+        );
       }
     }
   });
@@ -27,4 +33,4 @@ function create_components(){
   window.latlngInputs=latlngInputs;
 }
 
-export default create_components;
+export default vue_setting;
