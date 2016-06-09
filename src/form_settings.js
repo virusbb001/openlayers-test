@@ -5,18 +5,30 @@
  */
 function getOptions(ol,map){
   var options = {
-    "add_single_ballon": {
-      head: "Add Single Balloon",
-      type: "LatLong",
-      execute: function(datas){
-        var latitude=datas.latitude;
-        var longitude=datas.longitude;
-        window.alert(latitude);
-        window.alert(longitude);
+    LatLongController: {
+      setNowPosition: {
+        func: function(event){
+          event.target.disabled=true;
+          event.target.textContent="Loading...";
+          navigator.geolocation.getCurrentPosition((position)=>{
+            this.$data.position.latitude=position.coords.latitude;
+            this.$data.position.longitude=position.coords.longitude;
+            event.target.textContent="Set Now Position";
+            event.target.disabled=false;
+          });
+        },
+        isEnable: function(){
+          return !("geolocation" in navigator);
+        }
+      },
+      goTo: function(){
+        var pos=this.$data.position;
+        map.getView().setCenter(
+          ol.proj.fromLonLat([pos.longitude, pos.latitude])
+        );
       }
     }
   };
-  map;
 
   return options;
 }
