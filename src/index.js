@@ -33,9 +33,11 @@ document.addEventListener("DOMContentLoaded",function(){
     ],
     view: view
   });
-  var options=getOpts(ol,map);
-  render(document.getElementById("forms"),options);
 
+  var options=getOpts(ol,map);
+  render(map,options);
+
+  // 最初の時のみ現在地を中央にするようにする
   navigator.geolocation.getCurrentPosition( (position) => {
     view.setCenter(
       ol.proj.fromLonLat([
