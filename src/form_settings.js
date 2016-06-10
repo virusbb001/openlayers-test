@@ -10,7 +10,8 @@ function getOptions(ol,map){
         func: function(event){
           event.target.disabled=true;
           event.target.textContent="Loading...";
-          navigator.geolocation.getCurrentPosition((position)=>{
+          console.log(this);
+          navigator.geolocation.getCurrentPosition(function(position){
             this.$data.position.latitude=position.coords.latitude;
             this.$data.position.longitude=position.coords.longitude;
             event.target.textContent="Set Now Position";

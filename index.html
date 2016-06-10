@@ -15,12 +15,11 @@
  <body>
   <div id="map" class="map"></div>
   <div id="forms">
+   <div class="status">{{status}}</div>
    <div class="positionInput">
     緯度:<input v-model="position.latitude" number>
     経度:<input v-model="position.longitude" number>
-    <div class="controllers" v-for="(name,method) in methods">
-     <button v-if="isCustom(method)" @click="method.func">{{name}}</button>
-     <button v-else @click="method">{{name}}</button>
+    <button @click="setFromNowPlace" :disabled="checkGeolocation()">Set Now Place</button>
     </div>
    </div>
   </div>

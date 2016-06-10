@@ -6,22 +6,19 @@ function vue_setting(map,options){
         latitude: 0,
         longitude: 0
       },
-      methods: options.LatLongController
+      status: ""
     },
     methods: {
-      isCustom: (target) => {
-        console.log(target);
-        console.log("func" in target);
-        return ("func" in target)
-      }
-    }
-    /*{
       setFromNowPlace: function(event){
         event.target.disabled=true;
         event.target.textContent="Loading...";
         navigator.geolocation.getCurrentPosition((position)=>{
           this.$data.position.latitude=position.coords.latitude;
           this.$data.position.longitude=position.coords.longitude;
+          event.target.textContent="Set now Position";
+          event.target.disabled=false;
+        },(error)=>{
+          this.$data.status="ERROR-"+error.code+": "+error.message;
           event.target.textContent="Set now Position";
           event.target.disabled=false;
         });
@@ -35,7 +32,7 @@ function vue_setting(map,options){
           ol.proj.fromLonLat([pos.longitude, pos.latitude])
         );
       }
-    } */
+    }
   });
 
   window.latlngInputs=latlngInputs;
