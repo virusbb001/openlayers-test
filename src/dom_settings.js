@@ -6,6 +6,9 @@ function vue_setting(map,options){
         latitude: 0,
         longitude: 0
       },
+      flags: {
+        setWhenClicked: true
+      },
       status: ""
     },
     methods: {
