@@ -34,6 +34,16 @@ function vue_setting(map,options){
         map.getView().setCenter(
           ol.proj.fromLonLat([pos.longitude, pos.latitude])
         );
+      },
+      addFavoritePlace: function(){
+        var list=JSON.parse(localStorage.getItem("oltest.favoliteplace")) || [];
+        var lon=
+        list.push([
+          this.$data.position.longitude,
+          this.$data.position.latitude
+        ]);
+        localStorage.setItem("oltest.favoliteplace",JSON.stringify(list));
+        console.log(list);
       }
     }
   });
