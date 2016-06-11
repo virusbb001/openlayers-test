@@ -38,6 +38,14 @@ function vue_setting(map,options){
     }
   });
 
+  map.on("click", function(e){
+    var lonlat=ol.proj.toLonLat(e.coordinate);
+    if(latlngInputs.$data.flags.setWhenClicked){
+      latlngInputs.$data.position.longitude=lonlat[0];
+      latlngInputs.$data.position.latitude=lonlat[1];
+    }
+  });
+
   window.latlngInputs=latlngInputs;
 }
 
