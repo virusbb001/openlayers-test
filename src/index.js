@@ -47,5 +47,43 @@ document.addEventListener("DOMContentLoaded",function(){
     console.log(error);
   });
 
+  setFileEvents();
+
   window.map=map;
 });
+
+function handleDragOver(e){
+  e.stopPropagation();
+  e.preventDefault();
+  e.dataTransfer.dropEffect="copy";
+}
+
+function handleFileSelect(e){
+  e.stopPropagation();
+  e.preventDefault();
+
+  var files=e.dataTransfer.files;
+  console.log(files);
+  addPointsFromFiles(files);
+}
+
+function setFileEvents(){
+  document.addEventListener("dragover",handleDragOver,false);
+  document.addEventListener("drop",handleFileSelect,false);
+}
+
+function addPointsFromFiles(files){
+  for(var i=0;i<files.length;i++){
+    let file=files[i];
+    if (file.type != "application/json"){
+      return false;
+    }
+    var reader = new FileReader();
+    reader.onload= function(e){
+      var results=JSON.parse(e.target.result);
+      // TODO: here to code
+      console.log(results);
+    };
+    reader.readAsText(file);
+  }
+}
