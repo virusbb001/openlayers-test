@@ -1,0 +1,20 @@
+{
+ "color" : "#000000",
+ "positions": [
+  {
+   "latitude": 35.9427557,
+   "longitude": 136.1988424,
+   "name" : "Megane museum"
+  },
+  {
+   "latitude": 35.943056,
+   "longitude": 136.188889,
+   "name": "Sabae Station"
+  },
+  {
+   "latitude": 35.95192045049713,
+   "longitude": 136.1858582496643,
+   "radius": 10
+  }
+ ]
+}
