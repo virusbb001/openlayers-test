@@ -3,6 +3,7 @@ import getOpts from "form_settings";
 import render from "dom_settings";
 
 document.addEventListener("DOMContentLoaded",function(){
+  /*
   var meganeMuseum= new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.fromLonLat([136.1988424,35.9427557]))
   });
@@ -20,6 +21,11 @@ document.addEventListener("DOMContentLoaded",function(){
   var vectorSource = new ol.source.Vector({
     features: [meganeMuseum]
   });
+ */
+
+  var vectorLayor = new ol.layer.Vector({
+    source: new ol.source.Vector()
+  });
   var view = new ol.View({
     center: ol.proj.fromLonLat([139.7528,35.685175]),
     zoom: 14
@@ -29,7 +35,7 @@ document.addEventListener("DOMContentLoaded",function(){
     target: "map",
     layers: [
       new ol.layer.Tile({ source: new ol.source.OSM() }),
-      new ol.layer.Vector({ source: vectorSource })
+      vectorLayor
     ],
     view: view
   });
@@ -50,6 +56,7 @@ document.addEventListener("DOMContentLoaded",function(){
   setFileEvents();
 
   window.map=map;
+  window.vectorLayor=vectorLayor;
 });
 
 function handleDragOver(e){
@@ -81,9 +88,39 @@ function addPointsFromFiles(files){
     var reader = new FileReader();
     reader.onload= function(e){
       var results=JSON.parse(e.target.result);
-      // TODO: here to code
-      console.log(results);
+      results.positions.forEach(pos => {
+        var feature=featureFactory(pos);
+        window.vectorLayor.getSource().addFeature(feature);
+      });
     };
     reader.readAsText(file);
   }
+}
+
+function featureFactory(pos_data){
+  var earthRadius = 6378137; // [m]
+  var wgs84Sphere = new ol.Sphere(earthRadius);
+  if("radius" in pos_data){
+    console.log("radius");
+    console.log(pos_data);
+    let circle = ol.geom.Polygon.circular(
+      wgs84Sphere,
+      [
+        pos_data.longitude,
+        pos_data.latitude
+      ],
+      pos_data.radius,
+      64
+    ).transform('EPSG:4326', 'EPSG:3857');
+    console.log(circle);
+    return new ol.Feature(circle);
+  }
+  return new ol.Feature({
+    geometry: new ol.geom.Point(
+      ol.proj.fromLonLat([
+        pos_data.longitude,
+        pos_data.latitude
+      ])
+    )
+  });
 }
