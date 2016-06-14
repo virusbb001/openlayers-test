@@ -1,8 +1,12 @@
 function vue_setting(map,options){
   var latlngInputs;
   var click_actions = [{
+    label: "None",
+    func: function(e){
+    }
+  },{
     label: "Set Now Place",
-    func: (e)=>{
+    func: function(e){
       var lonlat=ol.proj.toLonLat(e.coordinate);
       if(latlngInputs.$data.flags.setWhenClicked){
         latlngInputs.$data.position.longitude=lonlat[0];
@@ -63,7 +67,7 @@ function vue_setting(map,options){
   });
 
   map.on("click", function(e){
-    click_actions[0].func(e);
+    latlngInputs.$data.selected_action(e);
   });
 
   window.latlngInputs=latlngInputs;
