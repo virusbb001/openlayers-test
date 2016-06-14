@@ -23,6 +23,12 @@
     <button @click="goTo">Go To</button>
     <button @click="addFavoritePlace">Save to localStorage</button>
     <label><input type="checkbox" v-model="flags.setWhenClicked">Set place when map clicked</label>
+    <br>
+    <select v-model="selected_action">
+     <option v-for="action in click_actions" :value="action.func">
+     {{ action.label }}
+     </option>
+    </select>
     </div>
    </div>
   </div>
