@@ -101,8 +101,6 @@ function featureFactory(pos_data){
   var earthRadius = 6378137; // [m]
   var wgs84Sphere = new ol.Sphere(earthRadius);
   if("radius" in pos_data){
-    console.log("radius");
-    console.log(pos_data);
     let circle = ol.geom.Polygon.circular(
       wgs84Sphere,
       [
@@ -111,8 +109,7 @@ function featureFactory(pos_data){
       ],
       pos_data.radius,
       64
-    ).transform('EPSG:4326', 'EPSG:3857');
-    console.log(circle);
+    ).transform("EPSG:4326", "EPSG:3857");
     return new ol.Feature(circle);
   }
   return new ol.Feature({

@@ -1,5 +1,17 @@
 function vue_setting(map,options){
-  var latlngInputs=new Vue({
+  var latlngInputs;
+  var click_actions = [{
+    label: "Set Now Place",
+    func: (e)=>{
+      var lonlat=ol.proj.toLonLat(e.coordinate);
+      if(latlngInputs.$data.flags.setWhenClicked){
+        latlngInputs.$data.position.longitude=lonlat[0];
+        latlngInputs.$data.position.latitude=lonlat[1];
+      }
+    }
+  }];
+
+  latlngInputs=new Vue({
     el: "#forms",
     data: {
       position: {
@@ -9,6 +21,8 @@ function vue_setting(map,options){
       flags: {
         setWhenClicked: true
       },
+      selected_action: click_actions[0].func,
+      click_actions: click_actions,
       status: ""
     },
     methods: {
@@ -49,11 +63,7 @@ function vue_setting(map,options){
   });
 
   map.on("click", function(e){
-    var lonlat=ol.proj.toLonLat(e.coordinate);
-    if(latlngInputs.$data.flags.setWhenClicked){
-      latlngInputs.$data.position.longitude=lonlat[0];
-      latlngInputs.$data.position.latitude=lonlat[1];
-    }
+    click_actions[0].func(e);
   });
 
   window.latlngInputs=latlngInputs;
