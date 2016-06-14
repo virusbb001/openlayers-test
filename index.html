@@ -15,10 +15,15 @@
  <body>
   <div id="map" class="map"></div>
   <div id="forms">
+   <div class="status">{{status}}</div>
    <div class="positionInput">
     緯度:<input v-model="position.latitude" number>
     経度:<input v-model="position.longitude" number>
-    <button @click="setFromNowPlace" :disabled="checkGeolocation()">Set now Position</button>
+    <button @click="setFromNowPlace" :disabled="checkGeolocation()">Set Now Place</button>
+    <button @click="goTo">Go To</button>
+    <button @click="addFavoritePlace">Save to localStorage</button>
+    <label><input type="checkbox" v-model="flags.setWhenClicked">Set place when map clicked</label>
+    </div>
    </div>
   </div>
  </body>
