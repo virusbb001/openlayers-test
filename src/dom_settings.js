@@ -2,7 +2,7 @@ function vue_setting(map,options){
   var latlngInputs;
   var click_actions = [{
     label: "None",
-    func: function(e){
+    func: function(){
     }
   },{
     label: "Set Now Place",
