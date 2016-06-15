@@ -8,10 +8,8 @@ function vue_setting(map,options){
     label: "Set Now Place",
     func: function(e){
       var lonlat=ol.proj.toLonLat(e.coordinate);
-      if(latlngInputs.$data.flags.setWhenClicked){
-        latlngInputs.$data.position.longitude=lonlat[0];
-        latlngInputs.$data.position.latitude=lonlat[1];
-      }
+      latlngInputs.$data.position.longitude=lonlat[0];
+      latlngInputs.$data.position.latitude=lonlat[1];
     }
   }];
 
@@ -21,9 +19,6 @@ function vue_setting(map,options){
       position: {
         latitude: 0,
         longitude: 0
-      },
-      flags: {
-        setWhenClicked: true
       },
       selected_action: click_actions[0].func,
       click_actions: click_actions,
