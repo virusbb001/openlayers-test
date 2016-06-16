@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded",function(){
   });
 
   var options=getOpts(ol,map);
-  render(map,options);
+  render(map,vectorLayor,options);
 
   // 最初の時のみ現在地を中央にするようにする
   navigator.geolocation.getCurrentPosition( (position) => {

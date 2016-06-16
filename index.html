@@ -23,8 +23,8 @@
     <button @click="goTo">Go To</button>
     <button @click="addFavoritePlace">Save to localStorage</button>
     <br>
-    <select v-model="selected_action">
-     <option v-for="action in click_actions" :value="action.func">
+    <select @change="setParamWhenActChanged" v-model="selected_action">
+     <option v-for="action in click_actions" :value="action">
      {{ action.label }}
      </option>
     </select>
