@@ -115,8 +115,9 @@ function featureFactory(pos_data){
   }
   if(Array.isArray(pos_data)){
     let coordinate_array = pos_data.map( coordinate =>
-      [coordinate.latitude, coordinate.longitude]
+      [coordinate.longitude, coordinate.latitude]
     );
+    console.log(coordinate_array);
 
     let line = new ol.geom.MultiLineString(coordinate_array);
 
