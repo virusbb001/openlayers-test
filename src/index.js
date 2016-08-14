@@ -90,6 +90,7 @@ function addPointsFromFiles(files){
       var results=JSON.parse(e.target.result);
       results.positions.forEach(pos => {
         var feature=featureFactory(pos);
+        console.log(feature);
         window.vectorLayor.getSource().addFeature(feature);
       });
     };
@@ -111,6 +112,15 @@ function featureFactory(pos_data){
       64
     ).transform("EPSG:4326", "EPSG:3857");
     return new ol.Feature(circle);
+  }
+  if(Array.isArray(pos_data)){
+    let coordinate_array = pos_data.map( coordinate =>
+      [coordinate.latitude, coordinate.longitude]
+    );
+
+    let line = new ol.geom.MultiLineString(coordinate_array);
+
+    return new ol.Feature(line.transform("EPSG:4326", "EPSG:3857"));
   }
   return new ol.Feature({
     geometry: new ol.geom.Point(
