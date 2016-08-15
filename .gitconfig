@@ -1,0 +1,5 @@
+# add to .git/config
+
+[merge "ours"]
+	name = "Keep ours merge"
+	driver = true
