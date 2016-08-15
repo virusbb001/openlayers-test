@@ -29,7 +29,7 @@ function vue_setting(map,vectorLayer,options){
     if(this.selected_action.type === "when_selected"){
       this.selected_action.func();
     }
-  }
+  };
 
   latlngInputs=new Vue({
     el: "#forms",
@@ -73,7 +73,6 @@ function vue_setting(map,vectorLayer,options){
           this.$data.position.latitude
         ]);
         localStorage.setItem("oltest.favoliteplace",JSON.stringify(list));
-        console.log(list);
       },
       setParamWhenActChanged: selectedHandler
     }
