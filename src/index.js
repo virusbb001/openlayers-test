@@ -119,7 +119,7 @@ function featureFactory(pos_data){
     );
     console.log(coordinate_array);
 
-    let line = new ol.geom.MultiLineString(coordinate_array);
+    let line = new ol.geom.LineString(coordinate_array);
 
     return new ol.Feature(line.transform("EPSG:4326", "EPSG:3857"));
   }
